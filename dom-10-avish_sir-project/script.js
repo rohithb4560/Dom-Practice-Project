@@ -34,13 +34,15 @@ function addData(e) {
     };
 
     data.push(obj);
+    // console.log(data)
     showData(data);
+    
 }
 
 
 function showData(newData) {
-    mainDiv.innerHTML = null;
-    newData.map((d) => {
+    mainDiv.innerHTML = "";
+    newData.map((d,index) => {
         let div = document.createElement("div");
         div.setAttribute("class", "content");
         let p1 = document.createElement("p");
@@ -54,8 +56,8 @@ function showData(newData) {
         let p3 = document.createElement("p");
         p3.setAttribute("class", "movierating");
         p3.textContent = "Movie Rating - " + d.text3;
-        console.log(typeof(p3));
-        console.log(p3);
+        // console.log(typeof(p3));
+        // console.log(p3);
         let p4 = document.createElement("p");
         p4.setAttribute("class", "actorame");
         p4.textContent = "Actor Name - " + d.text4;
@@ -77,14 +79,10 @@ function showData(newData) {
     });
 }
 
-let filterDataa = document.querySelector("filterimdb");
-filterDataa.addEventListener("click", filterData(data));
-
-function filterData(data) {
-    data.sort((a, b) => {
-        // return a[“text3”] - b[“text3”];
+let filterDataa = document.querySelector(".filterimdb");
+filterDataa.addEventListener("click", ()=>{
+    data.sort(function(a, b)  {
         return a["text3"] - b["text3"];
-
     })
-    showData(filterData);
-}
+    showData(data);
+});
